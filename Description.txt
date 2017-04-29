@@ -2,3 +2,10 @@
 https://rileykidd.com/2013/09/09/using-xss-to-csrf/
 https://www.troyhunt.com/owasp-top-10-for-net-developers-part-5/
 https://www.troyhunt.com/understanding-csrf-video-tutorial/
+
+http://stackoverflow.com/questions/9713058/send-post-data-using-xmlhttprequest
+http://stackoverflow.com/questions/692196/post-request-javascript
+http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
+https://www.kirupa.com/html5/making_http_requests_js.htm
+https://www.optiv.com/blog/bypassing-csrf-tokens-via-xss
+how to send a post request with xmlhttprequest

